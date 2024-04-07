@@ -1,0 +1,18 @@
+<h1>DBZ Personajes</h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- Se puede enviar un array vacío para el @Input, pero ojo, en este caso, no muestra el valor que esté definido por defecto en el componente. <app-dbz-list [characterList]="[]"></app-dbz-list> -->
+    <app-dbz-list [characterList]="characters"
+                  (onDelete)="onDeleteCharacter($event)"></app-dbz-list>
+
+  </div>
+
+  <div class="col">
+    <!-- Recibe el evento onNewCharacter y llama a la función onNewCharacterMP con la palabra reservada $event que ya tiene un tipo que tiene que coincidir tanto con el envío de la función del hijo, como con el parámetro de la función del padre. -->
+    <app-dbz-add-character (onNewCharacter)="onNewCharacter($event)"></app-dbz-add-character>
+
+  </div>
+
+</div>

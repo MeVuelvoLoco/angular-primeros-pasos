@@ -1,0 +1,42 @@
+<h3>Listado de héroes</h3>
+
+<!--<h3>Héroe borrado <small class="text-danger"> {{ deletedHero }} </small></h3>-->
+<!--<div *ngIf="deletedHero">
+  <h3>Héroe borrado <small class="text-danger"> {{ deletedHero }} </small></h3>
+</div>
+
+<div *ngIf="!deletedHero">
+  <h3>No ha borrado nada</h3>
+</div>-->
+
+<!-- Esto de aquí arriba podría funcionar, pero evalúa 2 veces la expresión.
+  Es mejor cambiarlo por el uso de la template -->
+
+  <div *ngIf="deletedHero else nothingWasDeleted">
+    <h3>Héroe borrado <small class="text-danger"> {{ deletedHero }} </small></h3>
+  </div>
+
+  <ng-template #nothingWasDeleted>
+    <h3>No ha borrado nada</h3>
+  </ng-template>
+
+  <!-- Con template, no aparece estructura en el DOM. Con el div ngIf, sí que se muestra el div.-->
+
+<button
+  *ngIf="heroNames.length > 0"
+  (click)="removeLastHero();"
+  class="btn btn-outline-danger">
+  Borrar último héroe
+</button>
+
+<ul class="mt-2 list-group">
+  <!--<li class="list-group-item">Spiderman</li>
+  <li class="list-group-item">Iroman</li>
+  <li class="list-group-item">Hulk</li>
+  <li class="list-group-item">Thor</li>-->
+  <li *ngFor="let name of heroNames"
+    class="list-group-item">
+    {{ name }}
+  </li>
+
+</ul>
